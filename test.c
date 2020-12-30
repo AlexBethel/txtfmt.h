@@ -19,7 +19,8 @@
 
 int main(int argc, char **argv)
 {
-  /* Individual colors, in foreground and background. */
+  /* Individual colors in foreground and background, dark and light
+   * versions. */
 #define test_color(color) \
   printf(#color "\t\t" \
          fg(color, "*** ") \
@@ -48,7 +49,7 @@ int main(int argc, char **argv)
   printf(reverse_video("happy") " ");
 
   /* Combining reverse video with foreground and background. (This
-   * makes bright background colors possible.) */
+   * makes bright background colors possible on Linux.) */
   printf(reverse_video(fg_b(blue, "new year")));
   printf("!\n");
 
