@@ -5,14 +5,16 @@ macros. The provided macros are:
 
 * `fg(color, string)`: Renders the text with the given foreground color.
 * `bg(color, string)`: Renders the text with the given background color.
-* `fg_b(color, string)`: Same as fg(), but uses bright versions of
+* `fg_b(color, string)`: Same as `fg()`, but uses bright versions of
   default colors.
-* `bg_b(color, string)`: Same as bg(), but uses bright versions of
+* `bg_b(color, string)`: Same as `bg()`, but uses bright versions of
   default colors.
 * `bold(string)`: Renders the string in bold.
 * `underline(string)`: Renders the string underlined.
 * `reverse_video(string)`: Renders the string, with the foreground and
   background colors swapped.
+
+See the provided test file (`test.c`) for precise examples of usage.
 
 ## Color selection
 
@@ -35,7 +37,7 @@ puts(fg(green, foo));
 ```
 
 Instead, you should use `printf` or `sprintf` to substitute the text into
-a format string appropriately. Our example from above thus becomes:
+a format string appropriately. The previous example thus becomes:
 
 ```c
 const char *foo = "abcd";
