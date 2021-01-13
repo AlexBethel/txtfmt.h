@@ -1,5 +1,5 @@
 /* txtfmt.h */
-/* Copyright (c) 2020 by Alexander Bethel. */
+/* Copyright (c) 2020, 2021 by Alexander Bethel. */
 
 /* This program is free software: you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -16,6 +16,14 @@
 
 #ifndef TXTFMT_H
 #define TXTFMT_H
+
+/* ---- Constants ---- */
+
+/* Whether bright foreground and background colors are supported.
+ * (Some terminals don't support bright foreground colors, and most
+ * terminals don't support bright backgrounds.) */
+#define FMT_BRIGHT_FG
+/* #define FMT_BRIGHT_BG */
 
 /* ---- Basic primitive strings ---- */
 
@@ -45,10 +53,19 @@
   FMT_ATTR("4" FMTCOL_##col) txt FMT_ATTR("49")
 
 /* Bright versions of above. */
-#define fg_b(col, txt) \
-  FMT_ATTR("9" FMTCOL_##col) txt FMT_ATTR("39")
-#define bg_b(col, txt) \
-  FMT_ATTR("10" FMTCOL_##col) txt FMT_ATTR("49")
+#ifdef FMT_BRIGHT_FG
+  #define fg_b(col, txt) \
+    FMT_ATTR("9" FMTCOL_##col) txt FMT_ATTR("39")
+#else
+  #define fg_b(col, txt) fg(col, txt)
+#endif
+
+#ifdef FMT_BRIGHT_BG
+  #define bg_b(col, txt) \
+    FMT_ATTR("10" FMTCOL_##col) txt FMT_ATTR("49")
+#else
+  #define bg_b(col, txt) bg(col, txt)
+#endif
 
 /* Bold text. */
 #define bold(txt) \
